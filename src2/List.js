@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Note from './Note';
 
-export default class List extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            mang: [
-                'ReactJS',
-                'NodeJS',
-                'React Native',
-                'PHP',
-                'Android'
-            ]
-        };
-    }
+class List extends Component {
     render() {
         return (
             <div>
-                { this.state.mang.map(e => <Note content={e} key={e} />) }
+                { this.props.mang1.map(e => <Note content={e.content} id={e.id} key={e.id} />) }
             </div>
         );
     }
 }
+
+export default connect(state => ({ mang1: state.mang }))(List);

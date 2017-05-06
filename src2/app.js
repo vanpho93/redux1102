@@ -1,6 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
 import List from './List';
+
+const redux = require('redux');
+
+const defaultState = {
+    mang: [
+        { id: 1, content: 'ReactJS' },
+        { id: 2, content: 'NodeJS' },
+        { id: 3, content: 'React Native' },
+        { id: 4, content: 'PHP' },
+        { id: 5, content: 'Android' }
+    ]
+};
+
+const reducer = (state = defaultState, action) => {
+    return state;
+};
+
+const store = redux.createStore(reducer);
 
 const App = () => (
     <div>
@@ -10,6 +30,8 @@ const App = () => (
 );
 
 ReactDOM.render(
-    <App />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('root')// eslint-disable-line
 );
