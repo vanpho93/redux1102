@@ -692,21 +692,15 @@ damerau-levenshtein@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.4.tgz#03191c432cb6eea168bb77f3a55ffdccb8978514"
 
-debug@2.6.1:
+debug@2.6.1, debug@^2.1.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
   dependencies:
     ms "0.7.2"
 
-debug@2.6.4:
+debug@2.6.4, debug@^2.2.0:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.4.tgz#7586a9b3c39741c0282ae33445c4e8ac74734fe0"
-  dependencies:
-    ms "0.7.3"
-
-debug@^2.1.1, debug@^2.2.0:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.6.tgz#a9fa6fbe9ca43cf1e79f73b75c0189cbb7d6db5a"
   dependencies:
     ms "0.7.3"
 
@@ -747,16 +741,9 @@ detect-indent@^4.0.0:
   dependencies:
     repeating "^2.0.0"
 
-doctrine@1.3.x:
+doctrine@1.3.x, doctrine@^1.2.2:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-1.3.0.tgz#13e75682b55518424276f7c173783456ef913d26"
-  dependencies:
-    esutils "^2.0.2"
-    isarray "^1.0.0"
-
-doctrine@^1.2.2:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-1.5.0.tgz#379dce730f6166f76cefa4e6707a159b02c5a6fa"
   dependencies:
     esutils "^2.0.2"
     isarray "^1.0.0"
@@ -1413,6 +1400,10 @@ loader-utils@^1.0.2:
     emojis-list "^2.0.0"
     json5 "^0.5.0"
 
+lodash-es@^4.2.1:
+  version "4.17.4"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
+
 lodash.assign@^4.0.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
@@ -1437,7 +1428,7 @@ lodash.pickby@^4.0.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.pickby/-/lodash.pickby-4.6.0.tgz#7dea21d8c18d7703a27c704c15d3b84a67e33aff"
 
-lodash@^4.0.0, lodash@^4.2.0, lodash@^4.3.0:
+lodash@^4.0.0, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -1714,6 +1705,15 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
+redux@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-3.6.0.tgz#887c2b3d0b9bd86eca2be70571c27654c19e188d"
+  dependencies:
+    lodash "^4.2.1"
+    lodash-es "^4.2.1"
+    loose-envify "^1.1.0"
+    symbol-observable "^1.0.2"
+
 regenerate@^1.2.1:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.3.2.tgz#d1941c67bad437e1be76433add5b385f95b19260"
@@ -1901,6 +1901,10 @@ strip-json-comments@~2.0.1:
 supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
+
+symbol-observable@^1.0.2:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.4.tgz#29bf615d4aa7121bdd898b22d4b3f9bc4e2aa03d"
 
 table@^3.7.8:
   version "3.8.3"
