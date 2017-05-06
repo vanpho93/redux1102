@@ -9557,6 +9557,9 @@ var reducer = function reducer() {
                 return e.id !== action.id;
             }) };
     }
+    if (action.type === 'THEM') {
+        return { mang: [action.item].concat(state.mang) };
+    }
     return state;
 };
 
@@ -22128,6 +22131,10 @@ var _Note = __webpack_require__(182);
 
 var _Note2 = _interopRequireDefault(_Note);
 
+var _NoteForm = __webpack_require__(225);
+
+var _NoteForm2 = _interopRequireDefault(_NoteForm);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22151,6 +22158,7 @@ var List = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 null,
+                _react2.default.createElement(_NoteForm2.default, null),
                 this.props.mang1.map(function (e) {
                     return _react2.default.createElement(_Note2.default, { content: e.content, id: e.id, key: e.id });
                 })
@@ -24460,6 +24468,75 @@ function shallowEqual(objA, objB) {
 
   return true;
 }
+
+/***/ }),
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(81);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(212);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NoteForm = function (_Component) {
+    _inherits(NoteForm, _Component);
+
+    function NoteForm() {
+        _classCallCheck(this, NoteForm);
+
+        return _possibleConstructorReturn(this, (NoteForm.__proto__ || Object.getPrototypeOf(NoteForm)).apply(this, arguments));
+    }
+
+    _createClass(NoteForm, [{
+        key: 'add',
+        value: function add() {
+            var _refs = this.refs,
+                txtContent = _refs.txtContent,
+                txtId = _refs.txtId;
+            var dispatch = this.props.dispatch;
+
+            var item = { id: txtId.value, content: txtContent.value };
+            dispatch({ type: 'THEM', item: item });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement('input', { type: 'text', placeholder: 'content', ref: 'txtContent' }),
+                _react2.default.createElement('input', { type: 'text', placeholder: 'id', ref: 'txtId' }),
+                _react2.default.createElement(
+                    'button',
+                    { onClick: this.add.bind(this) },
+                    'Add'
+                )
+            );
+        }
+    }]);
+
+    return NoteForm;
+}(_react.Component);
+
+exports.default = (0, _reactRedux.connect)()(NoteForm);
 
 /***/ })
 /******/ ]);

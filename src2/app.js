@@ -20,6 +20,9 @@ const reducer = (state = defaultState, action) => {
     if (action.type === 'XOA') {
         return { mang: state.mang.filter(e => e.id !== action.id) };
     }
+    if (action.type === 'THEM') {
+        return { mang: [action.item].concat(state.mang) };
+    }
     return state;
 };
 
