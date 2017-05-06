@@ -17,6 +17,9 @@ const defaultState = {
 };
 
 const reducer = (state = defaultState, action) => {
+    if (action.type === 'XOA') {
+        return { mang: state.mang.filter(e => e.id !== action.id) };
+    }
     return state;
 };
 

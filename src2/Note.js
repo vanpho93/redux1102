@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class Note extends Component {
+class Note extends Component {
+    remove() {
+        const { dispatch, id } = this.props;
+        dispatch({ type: 'XOA', id });
+    }
     render() {
         return (
             <div>
                 <p>{this.props.content}</p>
-                <button>Xoa</button>
+                <button onClick={this.remove.bind(this)}>Xoa</button>
             </div>
         );
     }
 }
+
+export default connect()(Note);
