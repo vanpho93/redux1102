@@ -9557,13 +9557,6 @@ var App = function App() {
     );
 };
 
-_reactDom2.default.render(_react2.default.createElement(
-    _reactRedux.Provider,
-    null,
-    _react2.default.createElement(App, null)
-), document.getElementById('root') // eslint-disable-line
-);
-
 var reducer = function reducer() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { value: 0 };
     var action = arguments[1];
@@ -9583,6 +9576,13 @@ store.dispatch({ type: 'BOT' });
 console.log(store.getState());
 store.dispatch({ type: 'BOT' });
 console.log(store.getState());
+
+_reactDom2.default.render(_react2.default.createElement(
+    _reactRedux.Provider,
+    { store: store },
+    _react2.default.createElement(App, null)
+), document.getElementById('root') // eslint-disable-line
+);
 
 /***/ }),
 /* 83 */
@@ -24350,6 +24350,8 @@ var _react = __webpack_require__(81);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(210);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24361,24 +24363,25 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Box = function (_Component) {
     _inherits(Box, _Component);
 
-    function Box(props) {
+    function Box() {
         _classCallCheck(this, Box);
 
-        var _this = _possibleConstructorReturn(this, (Box.__proto__ || Object.getPrototypeOf(Box)).call(this, props));
-
-        _this.state = { value: 0 };
-        return _this;
+        return _possibleConstructorReturn(this, (Box.__proto__ || Object.getPrototypeOf(Box)).apply(this, arguments));
     }
 
     _createClass(Box, [{
         key: 'them',
         value: function them() {
-            this.setState({ value: this.state.value + 1 });
+            var dispatch = this.props.dispatch;
+
+            dispatch({ type: 'THEM' });
         }
     }, {
         key: 'bot',
         value: function bot() {
-            this.setState({ value: this.state.value - 1 });
+            var dispatch = this.props.dispatch;
+
+            dispatch({ type: 'BOT' });
         }
     }, {
         key: 'render',
@@ -24389,7 +24392,7 @@ var Box = function (_Component) {
                 _react2.default.createElement(
                     'h2',
                     null,
-                    this.state.value
+                    this.props.vl
                 ),
                 _react2.default.createElement(
                     'button',
@@ -24408,7 +24411,9 @@ var Box = function (_Component) {
     return Box;
 }(_react.Component);
 
-exports.default = Box;
+exports.default = (0, _reactRedux.connect)(function (state) {
+    return { vl: state.value };
+})(Box);
 
 /***/ })
 /******/ ]);

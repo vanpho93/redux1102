@@ -12,13 +12,6 @@ const App = () => (
     </div>
 );
 
-ReactDOM.render(
-    <Provider>
-        <App />
-    </Provider>,
-    document.getElementById('root')// eslint-disable-line
-);
-
 const reducer = (state = { value: 0 }, action) => {
     if (action.type === 'THEM') return { value: state.value + 1 };
     if (action.type === 'BOT') return { value: state.value - 1 };
@@ -35,3 +28,10 @@ store.dispatch({ type: 'BOT' });
 console.log(store.getState());
 store.dispatch({ type: 'BOT' });
 console.log(store.getState());
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')// eslint-disable-line
+);

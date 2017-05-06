@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class Box extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: 0 };
-    }
-
+class Box extends Component {
     them() {
-        this.setState({ value: this.state.value + 1 });
+        const { dispatch } = this.props;
+        dispatch({ type: 'THEM' });
     }
-
     bot() {
-        this.setState({ value: this.state.value - 1 });
+        const { dispatch } = this.props;
+        dispatch({ type: 'BOT' });
     }
-
     render() {
         return (
             <div>
-                <h2>{this.state.value}</h2>
+                <h2>{this.props.vl}</h2>
                 <button onClick={this.them.bind(this)}>THEM</button>
                 <button onClick={this.bot.bind(this)}>BOT</button>
             </div>
         );
     }
 }
+
+export default connect(state => ({ vl: state.value }))(Box);
