@@ -13,15 +13,28 @@ const defaultState = {
         { id: 3, content: 'React Native' },
         { id: 4, content: 'PHP' },
         { id: 5, content: 'Android' }
-    ]
+    ],
+    isUpdating: false
 };
 
 const reducer = (state = defaultState, action) => {
     if (action.type === 'XOA') {
-        return { mang: state.mang.filter(e => e.id !== action.id) };
+        return { 
+            mang: state.mang.filter(e => e.id !== action.id),
+            isUpdating: state.isUpdating 
+        };
     }
     if (action.type === 'THEM') {
-        return { mang: [action.item].concat(state.mang) };
+        return { 
+            mang: [action.item].concat(state.mang),
+            isUpdating: state.isUpdating 
+        };
+    }
+    if (action.type === 'TOGGLE_IS_UPDATING') {
+        return {
+            mang: state.mang,
+            isUpdating: !state.isUpdating
+        };
     }
     return state;
 };
