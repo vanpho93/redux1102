@@ -11204,6 +11204,8 @@ exports.default = (0, _reactRedux.connect)()(NoteForm);
 "use strict";
 
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = __webpack_require__(17);
 
 var _react2 = _interopRequireDefault(_react);
@@ -11220,6 +11222,8 @@ var _List2 = _interopRequireDefault(_List);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var redux = __webpack_require__(54);
 
 var defaultState = {
@@ -11232,29 +11236,22 @@ var reducer = function reducer() {
     var action = arguments[1];
 
     if (action.type === 'XOA') {
-        return {
-            mang: state.mang.filter(function (e) {
+        return _extends({}, state, { mang: state.mang.filter(function (e) {
                 return e.id !== action.id;
-            }),
-            isUpdating: state.isUpdating
-        };
+            }) });
     }
     if (action.type === 'THEM') {
-        return {
-            mang: [action.item].concat(state.mang),
-            isUpdating: state.isUpdating
-        };
+        return _extends({}, state, { mang: [action.item].concat(_toConsumableArray(state.mang)) });
     }
     if (action.type === 'TOGGLE_IS_UPDATING') {
-        return {
-            mang: state.mang,
-            isUpdating: !state.isUpdating
-        };
+        return _extends({}, state, { isUpdating: !state.isUpdating });
     }
     return state;
 };
 
-var store = redux.createStore(reducer);
+var store = redux.createStore(reducer, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
+    return f;
+}));
 
 var App = function App() {
     return _react2.default.createElement(
@@ -11275,6 +11272,8 @@ _reactDom2.default.render(_react2.default.createElement(
     _react2.default.createElement(App, null)
 ), document.getElementById('root') // eslint-disable-line
 );
+
+// babel-preset-stage-0
 
 /***/ }),
 /* 101 */

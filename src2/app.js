@@ -19,27 +19,20 @@ const defaultState = {
 
 const reducer = (state = defaultState, action) => {
     if (action.type === 'XOA') {
-        return { 
-            mang: state.mang.filter(e => e.id !== action.id),
-            isUpdating: state.isUpdating 
-        };
+        return { ...state, mang: state.mang.filter(e => e.id !== action.id) };
     }
     if (action.type === 'THEM') {
-        return { 
-            mang: [action.item].concat(state.mang),
-            isUpdating: state.isUpdating 
-        };
+        return { ...state, mang: [action.item, ...state.mang] };
     }
     if (action.type === 'TOGGLE_IS_UPDATING') {
-        return {
-            mang: state.mang,
-            isUpdating: !state.isUpdating
-        };
+        return { ...state, isUpdating: !state.isUpdating };
     }
     return state;
 };
 
-const store = redux.createStore(reducer);
+const store = redux.createStore(reducer, redux.compose(
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+));
 
 const App = () => (
     <div>
@@ -54,3 +47,6 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')// eslint-disable-line
 );
+
+
+// babel-preset-stage-0
