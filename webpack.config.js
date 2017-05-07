@@ -1,5 +1,9 @@
 module.exports = {
-    entry: './src2/app.js',
+    entry: [
+        'script-loader!jquery/dist/jquery.min.js',
+        'script-loader!foundation-sites/dist/js/foundation.min.js',
+        './src2/app.js'
+    ],
     output: {
         filename: './public/bundle.js'
     },

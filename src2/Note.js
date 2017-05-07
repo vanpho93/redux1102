@@ -10,7 +10,7 @@ class Note extends Component {
         return (
             <div>
                 <p>{this.props.content}</p>
-                <button onClick={this.remove.bind(this)}>Xoa</button>
+                <button className="alert button" onClick={this.remove.bind(this)}>Xoa</button>
             </div>
         );
     }
