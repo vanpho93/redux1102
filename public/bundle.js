@@ -11204,8 +11204,6 @@ exports.default = (0, _reactRedux.connect)()(NoteForm);
 "use strict";
 
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _react = __webpack_require__(17);
 
 var _react2 = _interopRequireDefault(_react);
@@ -11226,28 +11224,34 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var redux = __webpack_require__(54);
 
-var defaultState = {
-    mang: [{ id: 1, content: 'ReactJS' }, { id: 2, content: 'NodeJS' }, { id: 3, content: 'React Native' }, { id: 4, content: 'PHP' }, { id: 5, content: 'Android' }],
-    isUpdating: false
-};
+var mangDefault = [{ id: 1, content: 'ReactJS' }, { id: 2, content: 'NodeJS' }, { id: 3, content: 'React Native' }, { id: 4, content: 'PHP' }, { id: 5, content: 'Android' }];
 
-var reducer = function reducer() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+var mangReducer = function mangReducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : mangDefault;
     var action = arguments[1];
 
     if (action.type === 'XOA') {
-        return _extends({}, state, { mang: state.mang.filter(function (e) {
-                return e.id !== action.id;
-            }) });
+        return state.filter(function (e) {
+            return e.id !== action.id;
+        });
     }
     if (action.type === 'THEM') {
-        return _extends({}, state, { mang: [action.item].concat(_toConsumableArray(state.mang)) });
-    }
-    if (action.type === 'TOGGLE_IS_UPDATING') {
-        return _extends({}, state, { isUpdating: !state.isUpdating });
+        return [action.item].concat(_toConsumableArray(state));
     }
     return state;
 };
+
+var isUpdatingReducer = function isUpdatingReducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    var action = arguments[1];
+
+    if (action.type === 'TOGGLE_IS_UPDATING') return !state;
+    return state;
+};
+
+var reducer = redux.combineReducers({
+    mang: mangReducer, isUpdating: isUpdatingReducer
+});
 
 var store = redux.createStore(reducer, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
     return f;

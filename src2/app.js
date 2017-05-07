@@ -6,29 +6,32 @@ import List from './List';
 
 const redux = require('redux');
 
-const defaultState = {
-    mang: [
-        { id: 1, content: 'ReactJS' },
-        { id: 2, content: 'NodeJS' },
-        { id: 3, content: 'React Native' },
-        { id: 4, content: 'PHP' },
-        { id: 5, content: 'Android' }
-    ],
-    isUpdating: false
-};
+const mangDefault = [
+    { id: 1, content: 'ReactJS' },
+    { id: 2, content: 'NodeJS' },
+    { id: 3, content: 'React Native' },
+    { id: 4, content: 'PHP' },
+    { id: 5, content: 'Android' }
+];
 
-const reducer = (state = defaultState, action) => {
+const mangReducer = (state = mangDefault, action) => {
     if (action.type === 'XOA') {
-        return { ...state, mang: state.mang.filter(e => e.id !== action.id) };
+        return state.filter(e => e.id !== action.id);
     }
     if (action.type === 'THEM') {
-        return { ...state, mang: [action.item, ...state.mang] };
-    }
-    if (action.type === 'TOGGLE_IS_UPDATING') {
-        return { ...state, isUpdating: !state.isUpdating };
+        return [action.item, ...state];
     }
     return state;
 };
+
+const isUpdatingReducer = (state = false, action) => {
+    if (action.type === 'TOGGLE_IS_UPDATING') return !state;
+    return state;
+};
+
+const reducer = redux.combineReducers({
+    mang: mangReducer, isUpdating: isUpdatingReducer
+});
 
 const store = redux.createStore(reducer, redux.compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
