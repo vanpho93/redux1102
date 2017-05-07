@@ -11218,44 +11218,11 @@ var _List = __webpack_require__(96);
 
 var _List2 = _interopRequireDefault(_List);
 
+var _store = __webpack_require__(226);
+
+var _store2 = _interopRequireDefault(_store);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var redux = __webpack_require__(54);
-
-var mangDefault = [{ id: 1, content: 'ReactJS' }, { id: 2, content: 'NodeJS' }, { id: 3, content: 'React Native' }, { id: 4, content: 'PHP' }, { id: 5, content: 'Android' }];
-
-var mangReducer = function mangReducer() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : mangDefault;
-    var action = arguments[1];
-
-    if (action.type === 'XOA') {
-        return state.filter(function (e) {
-            return e.id !== action.id;
-        });
-    }
-    if (action.type === 'THEM') {
-        return [action.item].concat(_toConsumableArray(state));
-    }
-    return state;
-};
-
-var isUpdatingReducer = function isUpdatingReducer() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    var action = arguments[1];
-
-    if (action.type === 'TOGGLE_IS_UPDATING') return !state;
-    return state;
-};
-
-var reducer = redux.combineReducers({
-    mang: mangReducer, isUpdating: isUpdatingReducer
-});
-
-var store = redux.createStore(reducer, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
-    return f;
-}));
 
 var App = function App() {
     return _react2.default.createElement(
@@ -11272,7 +11239,7 @@ var App = function App() {
 
 _reactDom2.default.render(_react2.default.createElement(
     _reactRedux.Provider,
-    { store: store },
+    { store: _store2.default },
     _react2.default.createElement(App, null)
 ), document.getElementById('root') // eslint-disable-line
 );
@@ -24573,6 +24540,113 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _reducer = __webpack_require__(229);
+
+var _reducer2 = _interopRequireDefault(_reducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var redux = __webpack_require__(54);
+
+var store = redux.createStore(_reducer2.default, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
+    return f;
+} // eslint-disable-line
+));
+
+exports.default = store;
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var isUpdatingReducer = function isUpdatingReducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    var action = arguments[1];
+
+    if (action.type === 'TOGGLE_IS_UPDATING') return !state;
+    return state;
+};
+
+exports.default = isUpdatingReducer;
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var mangDefault = [{ id: 1, content: 'ReactJS' }, { id: 2, content: 'NodeJS' }, { id: 3, content: 'React Native' }, { id: 4, content: 'PHP' }, { id: 5, content: 'Android' }];
+
+var mangReducer = function mangReducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : mangDefault;
+    var action = arguments[1];
+
+    if (action.type === 'XOA') {
+        return state.filter(function (e) {
+            return e.id !== action.id;
+        });
+    }
+    if (action.type === 'THEM') {
+        return [action.item].concat(_toConsumableArray(state));
+    }
+    return state;
+};
+
+exports.default = mangReducer;
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _mangReducer = __webpack_require__(228);
+
+var _mangReducer2 = _interopRequireDefault(_mangReducer);
+
+var _isUpdatingReducer = __webpack_require__(227);
+
+var _isUpdatingReducer2 = _interopRequireDefault(_isUpdatingReducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var redux = __webpack_require__(54);
+
+var reducer = redux.combineReducers({
+    mang: _mangReducer2.default, isUpdating: _isUpdatingReducer2.default
+});
+
+exports.default = reducer;
 
 /***/ })
 /******/ ]);
